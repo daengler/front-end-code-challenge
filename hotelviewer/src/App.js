@@ -11,7 +11,7 @@ class App extends Component {
       super(props);
 
       this.state = {
-        hotels: [{id:1, name:'hotel1'},{id:2, name:'hotel2'}],
+        hotels: [],
         locationId: '',
         checkin:'',
         checkout:'',
@@ -37,8 +37,7 @@ class App extends Component {
       ).then(
 
         data => {
-            console.log(data);
-            this.setState({hotels: data});        
+            this.setState({hotels: data});
         }
       )
 
@@ -54,7 +53,7 @@ class App extends Component {
           <h1 className="App-title">Simple Hotel Viewer</h1>
         </header>
         <Locations/>
-        <SearchForm handleSearch={this.handleSearch}/>
+        <SearchForm handleSearch={this.handleSearch.bind(this)}/>
         <Hotels hotels={this.state.hotels} />
       </div>
     );
