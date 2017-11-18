@@ -44,9 +44,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <SearchForm handleSearch={this.handleSearch}/><br/>
           <h1 className="App-title">Simple Hotel Viewer</h1>
         </header>
+        <SearchForm handleSearch={this.handleSearch}/><br/>
         <Hotels hotels={this.state.hotels} />
       </div>
     );
