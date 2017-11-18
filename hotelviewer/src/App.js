@@ -11,6 +11,7 @@ class App extends Component {
       super(props);
 
       this.state = {
+        hotels: [{id:1, name:'hotel1'},{id:2, name:'hotel2'}],
         locationId: '',
         checkin:'',
         checkout:'',
@@ -20,11 +21,28 @@ class App extends Component {
   }
 
 
+
   handleSearch(searchState) {
     console.log('in app, search state');
     console.log(searchState);
     this.setState({locationId: searchState.locationId, checkin: searchState.checkin, checkout: searchState.checkout});
     console.log(this.state);
+
+
+    if (this.state.locationId !== ''){
+      fetch("http://localhost:9696/api/locations/"+this.state.locationId+"/hotels?checkin="+this.state.checkin+"&checkout="+this.state.checkout).then(
+        response => {
+            return response.json();
+        }
+      ).then(
+
+        data => {
+            console.log(data);
+            this.setState({hotels: data});        
+        }
+      )
+
+    }
   }
 
 
@@ -37,7 +55,7 @@ class App extends Component {
         </header>
         <Locations/>
         <SearchForm handleSearch={this.handleSearch}/>
-        <Hotels locationId={this.state.locationId} checkin={this.state.checkin} checkout={this.state.checkout} />
+        <Hotels hotels={this.state.hotels} />
       </div>
     );
   }
