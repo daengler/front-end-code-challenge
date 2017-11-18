@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Locations from './Locations';
 import SearchForm from './SearchForm';
 import Hotels from './Hotels';
 
@@ -16,8 +15,7 @@ class App extends Component {
         checkin:'',
         checkout:'',
       };
-
-
+      this.handleSearch = this.handleSearch.bind(this)
   }
 
 
@@ -46,9 +44,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <SearchForm handleSearch={this.handleSearch}/><br/>
           <h1 className="App-title">Simple Hotel Viewer</h1>
         </header>
-        <SearchForm handleSearch={this.handleSearch.bind(this)}/><br/>
         <Hotels hotels={this.state.hotels} />
       </div>
     );
