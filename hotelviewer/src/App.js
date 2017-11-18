@@ -23,14 +23,10 @@ class App extends Component {
 
 
   handleSearch(searchState) {
-    console.log('in app, search state');
-    console.log(searchState);
     this.setState({locationId: searchState.locationId, checkin: searchState.checkin, checkout: searchState.checkout});
-    console.log(this.state);
 
-
-    if (this.state.locationId !== ''){
-      fetch("http://localhost:9696/api/locations/"+this.state.locationId+"/hotels?checkin="+this.state.checkin+"&checkout="+this.state.checkout).then(
+    if (searchState.locationId !== ''){
+      fetch("http://localhost:9696/api/locations/"+searchState.locationId+"/hotels?checkin="+searchState.checkin+"&checkout="+searchState.checkout).then(
         response => {
             return response.json();
         }
