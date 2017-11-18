@@ -48,8 +48,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Simple Hotel Viewer</h1>
         </header>
-        <Locations/>
-        <SearchForm handleSearch={this.handleSearch.bind(this)}/>
+        <SearchForm handleSearch={this.handleSearch.bind(this)}/><br/>
         <Hotels hotels={this.state.hotels} />
       </div>
     );
