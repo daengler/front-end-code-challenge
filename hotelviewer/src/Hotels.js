@@ -28,11 +28,16 @@ class Hotels extends Component {
         )
     })
     return (
-        <div className="hotels">
+        <div className="hotelresults">
+          <div className="resultsize">
+            {this.state.hotels.length} hotels found
+          </div>
+          <div className="hotels">
             {hotelList}
+          </div>
         </div>
-
     );
+
   }
 
 
