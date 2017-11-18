@@ -9,8 +9,8 @@ constructor(props) {
     super(props);
     this.state = {
       locationId: '',
-      checkin:'',
-      checkout:'',
+      checkin:'2016-05-02',
+      checkout:'2016-05-04',
     };
     let { handleSearch } = this.props;
     this.handleSearch = handleSearch;
@@ -39,8 +39,8 @@ constructor(props) {
     return (
       <form onSubmit={this.handleSubmit}>
          <LocationOptions handleChange={this.handleChange}/>
-            Check In: <input name="checkin" type="text" onChange={this.handleChange}/>
-            Check Out: <input  name="checkout" type="text" onChange={this.handleChange}/>
+            Check In: <input name="checkin" type="text" onChange={this.handleChange} value={this.state.checkin}/>
+            Check Out: <input  name="checkout" type="text" onChange={this.handleChange}  value={this.state.checkout}/>
         <input type="submit" value="Submit" />
       </form>
     );
