@@ -29,12 +29,12 @@ class LocationOptions extends Component {
           })
           this.setState({locations: locations});
       }
-    )    
+    )
   }
 
   render() {
     return (
-        <select name="locationId" onChange={this.handleChange}>
+        <select name="locationId" onChange={this.handleChange} value={this.props.defaultLocationId}>
             {this.state.locations}
         </select>
     );

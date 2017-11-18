@@ -8,7 +8,7 @@ class SearchForm extends Component {
 constructor(props) {
     super(props);
     this.state = {
-      locationId: '',
+      locationId: 'charlottesville',
       checkin:'2016-05-02',
       checkout:'2016-05-04',
     };
@@ -38,10 +38,10 @@ constructor(props) {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-         <LocationOptions handleChange={this.handleChange}/>
-            Check In: <input name="checkin" type="text" onChange={this.handleChange} value={this.state.checkin}/>
-            Check Out: <input  name="checkout" type="text" onChange={this.handleChange}  value={this.state.checkout}/>
-        <input type="submit" value="Submit" />
+         <LocationOptions handleChange={this.handleChange} defaultLocationId={this.state.locationId}/>&nbsp;
+         Check In: <input name="checkin" type="text" onChange={this.handleChange} value={this.state.checkin}/>&nbsp;
+         Check Out: <input  name="checkout" type="text" onChange={this.handleChange}  value={this.state.checkout}/>&nbsp;
+         <input type="submit" value="Submit" />
       </form>
     );
   }
