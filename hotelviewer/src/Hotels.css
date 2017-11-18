@@ -1,0 +1,11 @@
+.hotels {
+  text-align: left;
+}
+
+.hotel {
+  vertical-align: top;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}

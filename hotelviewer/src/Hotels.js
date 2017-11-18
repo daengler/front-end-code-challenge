@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Hotels.css';
 
 class Hotels extends Component {
 
@@ -21,7 +22,8 @@ class Hotels extends Component {
     let hotelList = this.state.hotels.map((hotel) => {
         return (
             <div key={hotel.id} className="hotel">
-                {hotel.name}
+                <b>{hotel.name}</b> ({'*'.repeat(hotel.stars)})<br/>
+                {hotel.short_description}<br/>
             </div>
         )
     })
