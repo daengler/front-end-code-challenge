@@ -18,29 +18,25 @@ class Hotels extends Component {
   }
 
   render() {
-    console.log('Hotels render');
     let hotelList = this.state.hotels.map((hotel) => {
-        return (
-            <div key={hotel.id} className="hotel">
-                <b>{hotel.name}</b> ({'*'.repeat(hotel.stars)})<br/>
-                {hotel.short_description}<br/>
-            </div>
-        )
+      return (
+        <div key={hotel.id} className="hotel">
+            <b>{hotel.name}</b> ({'*'.repeat(hotel.stars)})<br/>
+            {hotel.short_description}<br/>
+        </div>
+      )
     })
     return (
-        <div className="hotelresults">
-          <div className="resultsize">
-            {this.state.hotels.length} hotels found
-          </div>
-          <div className="hotels">
-            {hotelList}
-          </div>
+      <div className="hotelresults">
+        <div className="resultsize">
+          {this.state.hotels.length} hotels found
         </div>
+        <div className="hotels">
+          {hotelList}
+        </div>
+      </div>
     );
-
   }
-
-
 }
 
 export default Hotels;

@@ -30,7 +30,6 @@ constructor(props) {
   }
 
   handleSubmit(event) {
-    console.log(this.state);
     this.handleSearch(this.state);
     event.preventDefault();
   }
