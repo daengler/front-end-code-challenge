@@ -12,8 +12,6 @@ constructor(props) {
       checkin:'2016-05-02',
       checkout:'2016-05-04',
     };
-    let { handleSearch } = this.props;
-    this.handleSearch = handleSearch;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,7 +28,7 @@ constructor(props) {
   }
 
   handleSubmit(event) {
-    this.handleSearch(this.state);
+    this.props.onDoSearch(this.state);
     event.preventDefault();
   }
 

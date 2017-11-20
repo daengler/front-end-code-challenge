@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchForm from './SearchForm';
-import Hotels from './Hotels';
 import { createStore } from 'redux'
+import {Provider} from 'react-redux'
+import HotelContainer from './HotelContainer'
 
 const initialState = {
   hotels: [],
@@ -11,7 +11,7 @@ const initialState = {
   checkout:'',
 };
 
-function doSearch(locationId, checkin, checkout){
+function doHotelSearch(locationId, checkin, checkout){
   if (locationId !== ''){
     fetch("http://localhost:9696/api/locations/"+locationId+"/hotels?checkin="+checkin+"&checkout="+checkout).then(
       response => {
@@ -19,19 +19,19 @@ function doSearch(locationId, checkin, checkout){
       }
     ).then(
       data => {
+        // todo: shouldn't have to call store.dispatch from here, but unclear what is the best way to handle
         store.dispatch({type:'UPDATEHOTELS', hotels: data});
       }
     )
   }
 }
 
-
-function appState(state = initialState, action){
+function hotelReducer(state = initialState, action){
   var newState = {};
   newState = Object.assign(newState, state);
   switch (action.type) {
     case 'SEARCH':
-      doSearch(action.locationId, action.checkin, action.checkout);
+      doHotelSearch(action.locationId, action.checkin, action.checkout);
       newState = Object.assign(newState, {locationId: action.locationId, checkin: action.checkin, checkout: action.checkout});
       return newState;
     case 'UPDATEHOTELS':
@@ -42,33 +42,18 @@ function appState(state = initialState, action){
   }
 }
 
-let store = createStore(appState);
+let store = createStore(hotelReducer);
 
 class App extends Component {
-
-  constructor(props) {
-      super(props);
-      this.state = initialState;
-      this.handleSearch = this.handleSearch.bind(this)
-
-      store.subscribe(() => {
-          this.setState(store.getState());
-        }
-      )
-  }
-
-  handleSearch(searchState) {
-    store.dispatch({type:'SEARCH', locationId: searchState.locationId, checkin: searchState.checkin, checkout: searchState.checkout});
-  }
-
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Simple Hotel Viewer</h1>
         </header>
-        <SearchForm handleSearch={this.handleSearch}/><br/>
-        <Hotels hotels={this.state.hotels} />
+        <Provider store={store}>
+          <HotelContainer/>
+        </Provider>
       </div>
     );
   }
